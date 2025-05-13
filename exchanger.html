@@ -2,18 +2,22 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Universal-Umrechner</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Universal-Umrechner</h1>
+  <div class="topnav">
+    <a class="active" href="#">Umrechner</a>
+    <a class="about" href="#">About</a>
+  </div>
 
-  <div class="converter">
-    <input type="number" id="inputValue" placeholder="Wert eingeben" />
+  <div style="margin-top: 100px; text-align: center;">
+    <h1>Universal-Umrechner</h1>
+    <input type="number" id="inputValue" placeholder="Wert eingeben" class="button" />
 
     <div class="dropdown">
-      <a><select id="categorySelect">
+      <a><select id="categorySelect" class="button">
         <option value="currency">Währung</option>
         <option value="weight">Gewicht</option>
         <option value="length">Länge</option>
@@ -22,15 +26,15 @@
     </div>
 
     <div class="dropdown">
-      <a><select id="fromUnit"></select></a>
+      <a><select id="fromUnit" class="button"></select></a>
     </div>
 
     <div class="dropdown">
-      <a><select id="toUnit"></select></a>
+      <a><select id="toUnit" class="button"></select></a>
     </div>
 
-    <button onclick="convert()">Umrechnen</button>
-
+    <br />
+    <button class="button" onclick="convert()">Umrechnen</button>
     <p id="result">Ergebnis: </p>
   </div>
 
