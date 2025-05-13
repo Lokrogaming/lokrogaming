@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universal-Umrechner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Universal-Umrechner</h1>
+
+  <div class="converter">
+    <input type="number" id="inputValue" placeholder="Wert eingeben" />
+
+    <div class="dropdown">
+      <a><select id="categorySelect">
+        <option value="currency">Währung</option>
+        <option value="weight">Gewicht</option>
+        <option value="length">Länge</option>
+        <option value="speed">Geschwindigkeit</option>
+      </select></a>
+    </div>
+
+    <div class="dropdown">
+      <a><select id="fromUnit"></select></a>
+    </div>
+
+    <div class="dropdown">
+      <a><select id="toUnit"></select></a>
+    </div>
+
+    <button onclick="convert()">Umrechnen</button>
+
+    <p id="result">Ergebnis: </p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
