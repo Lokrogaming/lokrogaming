@@ -46,28 +46,71 @@ function openlateindl() {
 function opentycoon() {
   window.location.href="tycoon.html"
 }
-const unitOptions = {
-  weight: ["kg", "g", "lb"],
-  length: ["m", "km", "mi"],
-  speed: ["km/h", "m/s", "mph"],
+const units = {
+  weight: {
+    kg: 1,
+    g: 1000,
+    lb: 2.20462,
+    oz: 35.274
+  },
+  length: {
+    m: 1,
+    km: 0.001,
+    cm: 100,
+    mm: 1000,
+    mi: 0.000621371,
+    yd: 1.09361,
+    ft: 3.28084,
+    in: 39.3701
+  },
+  speed: {
+    "m/s": 1,
+    "km/h": 3.6,
+    "mph": 2.23694,
+    "kn": 1.94384
+  }
 };
-
-const currencyList = ["USD", "EUR", "GBP", "CHF", "JPY"];
 
 document.getElementById("categorySelect").addEventListener("change", updateUnits);
 
 function updateUnits() {
   const category = document.getElementById("categorySelect").value;
-  const from = document.getElementById("fromUnit");
-  const to = document.getElementById("toUnit");
+  const fromSelect = document.getElementById("fromUnit");
+  const toSelect = document.getElementById("toUnit");
 
-  let options = [];
+  fromSelect.innerHTML = "";
+  toSelect.innerHTML = "";
 
-  if (category === "currency") options = currencyList;
-  else options = unitOptions[category];
+  if (category === "currency") {
+    loadCurrencies(); // Ruft API auf
+  } else {
+    const categoryUnits = Object.keys(units[category]);
+    categoryUnits.forEach(unit => {
+      const optionFrom = new Option(unit, unit);
+      const optionTo = new Option(unit, unit);
+      fromSelect.add(optionFrom);
+      toSelect.add(optionTo);
+    });
+  }
+}
 
-  from.innerHTML = options.map(opt => `<option value="${opt}">${opt}</option>`).join("");
-  to.innerHTML = options.map(opt => `<option value="${opt}">${opt}</option>`).join("");
+async function loadCurrencies() {
+  const apiKey = "5a85e6ebf9db63b0364178c999ad268f";
+  const res = await fetch(`https://api.exchangerate.host/symbols?apikey=${apiKey}`);
+  const data = await res.json();
+
+  const fromSelect = document.getElementById("fromUnit");
+  const toSelect = document.getElementById("toUnit");
+
+  Object.keys(data.symbols).forEach(code => {
+    const option1 = new Option(code, code);
+    const option2 = new Option(code, code);
+    fromSelect.add(option1);
+    toSelect.add(option2);
+  });
+
+  fromSelect.value = "USD";
+  toSelect.value = "EUR";
 }
 
 async function convert() {
@@ -77,27 +120,42 @@ async function convert() {
   const to = document.getElementById("toUnit").value;
   const result = document.getElementById("result");
 
-  if (isNaN(value)) return result.textContent = "Bitte eine gültige Zahl eingeben.";
-
-  if (category === "currency") {
-    const res = await fetch(`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${value}`);
-    const data = await res.json();
-    result.textContent = `Ergebnis: ${data.result.toFixed(2)} ${to}`;
+  if (isNaN(value)) {
+    result.textContent = "Bitte eine gültige Zahl eingeben.";
     return;
   }
 
-  // Einfache Umrechnungstabellen
-  const factors = {
-    weight: { kg: 1, g: 1000, lb: 2.20462 },
-    length: { m: 1, km: 0.001, mi: 0.000621371 },
-    speed: { "km/h": 1, "m/s": 0.277778, mph: 0.621371 },
-  };
+  if (category === "currency") {
+    const apiKey = "5a85e6ebf9db63b0364178c999ad268f";
+    const url = `https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${value}&apikey=${apiKey}`;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
 
-  const base = value / factors[category][from];
-  const converted = base * factors[category][to];
+      if (data.result) {
+        result.textContent = `Ergebnis: ${data.result.toFixed(2)} ${to}`;
+      } else {
+        result.textContent = "Fehler beim Abrufen des Wechselkurses.";
+      }
+    } catch (error) {
+      result.textContent = "API-Fehler: " + error.message;
+    }
+    return;
+  }
+
+  const fromFactor = units[category][from];
+  const toFactor = units[category][to];
+  if (fromFactor === undefined || toFactor === undefined) {
+    result.textContent = "Ungültige Einheit.";
+    return;
+  }
+
+  const baseValue = value / fromFactor;
+  const converted = baseValue * toFactor;
   result.textContent = `Ergebnis: ${converted.toFixed(2)} ${to}`;
 }
 
-// Initialisieren
-updateUnits();
-
+// Seite initialisieren mit Gewicht
+document.addEventListener("DOMContentLoaded", () => {
+  updateUnits();
+});
