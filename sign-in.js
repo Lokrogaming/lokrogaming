@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
   const message = document.getElementById('message');
 
-  const username = "Admin";
-  const password = "test123";
+  const username = btoa("QWRtaW4=");
+  const password = btoa("dGVzdDEyMw==");
 
   // Generate a random captcha
   function generateCaptcha() {
