@@ -243,3 +243,37 @@ address {
             height: 380px;
             margin-bottom: 10px;
         }
+        .login-container {
+          text-align: center;
+          background: white;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      input {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #message {
+      margin-top: 10px;
+      color: red;
+      font-size: 14px;
+  }
+  .captcha-container {
+    margin-top: 10px;
+}
+  .login-container button.button {
+  background-color: royalblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
