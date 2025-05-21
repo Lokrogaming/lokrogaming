@@ -71,6 +71,16 @@ const units = {
   }
 };
 
+const staticRates = {
+  USD: 1,
+  EUR: 0.92,
+  GBP: 0.79,
+  JPY: 155.3,
+  CHF: 0.98,
+  AUD: 1.53,
+  CAD: 1.37
+};
+
 document.getElementById("categorySelect").addEventListener("change", updateUnits);
 
 function updateUnits() {
@@ -81,39 +91,23 @@ function updateUnits() {
   fromSelect.innerHTML = "";
   toSelect.innerHTML = "";
 
+  let options = [];
+
   if (category === "currency") {
-    loadCurrencies(); // Ruft API auf
+    options = Object.keys(staticRates);
   } else {
-    const categoryUnits = Object.keys(units[category]);
-    categoryUnits.forEach(unit => {
-      const optionFrom = new Option(unit, unit);
-      const optionTo = new Option(unit, unit);
-      fromSelect.add(optionFrom);
-      toSelect.add(optionTo);
-    });
+    options = Object.keys(units[category]);
   }
-}
 
-async function loadCurrencies() {
-  const apiKey = "5a85e6ebf9db63b0364178c999ad268f";
-  const res = await fetch(`https://api.exchangerate.host/symbols?apikey=${apiKey}`);
-  const data = await res.json();
-
-  const fromSelect = document.getElementById("fromUnit");
-  const toSelect = document.getElementById("toUnit");
-
-  Object.keys(data.symbols).forEach(code => {
-    const option1 = new Option(code, code);
-    const option2 = new Option(code, code);
-    fromSelect.add(option1);
-    toSelect.add(option2);
+  options.forEach(unit => {
+    const optionFrom = new Option(unit, unit);
+    const optionTo = new Option(unit, unit);
+    fromSelect.add(optionFrom);
+    toSelect.add(optionTo);
   });
-
-  fromSelect.value = "USD";
-  toSelect.value = "EUR";
 }
 
-async function convert() {
+function convert() {
   const value = parseFloat(document.getElementById("inputValue").value);
   const category = document.getElementById("categorySelect").value;
   const from = document.getElementById("fromUnit").value;
@@ -126,30 +120,14 @@ async function convert() {
   }
 
   if (category === "currency") {
-    const apiKey = "5a85e6ebf9db63b0364178c999ad268f";
-    const url = `https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${value}&apikey=${apiKey}`;
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-
-      if (data.result) {
-        result.textContent = `Ergebnis: ${data.result.toFixed(2)} ${to}`;
-      } else {
-        result.textContent = "Fehler beim Abrufen des Wechselkurses.";
-      }
-    } catch (error) {
-      result.textContent = "API-Fehler: " + error.message;
-    }
+    const baseUSD = value / staticRates[from];
+    const converted = baseUSD * staticRates[to];
+    result.textContent = `Ergebnis: ${converted.toFixed(2)} ${to}`;
     return;
   }
 
   const fromFactor = units[category][from];
   const toFactor = units[category][to];
-  if (fromFactor === undefined || toFactor === undefined) {
-    result.textContent = "Ungültige Einheit.";
-    return;
-  }
-
   const baseValue = value / fromFactor;
   const converted = baseValue * toFactor;
   result.textContent = `Ergebnis: ${converted.toFixed(2)} ${to}`;
