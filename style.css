@@ -90,7 +90,6 @@ body {
   margin-top: 100px;
   text-align: center;
   flex-direction: column;
-  font-family: "DeliusRegular";
 }
 #gedenkenachtermai {
   background-color: white;
@@ -102,7 +101,6 @@ body {
   margin-top: 100px;
   text-align: center;
   flex-direction: column;
-  font-family: "DeliusRegular";
 }
 address {
         border: 1px solid black;
