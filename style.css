@@ -30,7 +30,8 @@ body {
   overflow: hidden;
   padding: 10px;
   z-index: 999;
-  font-family: "OutfitSemiBold"
+  font-family: "OutfitSemiBold";
+  font-style: normal;
 }
 
       .topnav a {
@@ -63,7 +64,7 @@ body {
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1;
             border-radius: 10px;
-            font-family: "DeliusRegular"
+            font-family: "DeliusRegular";
         }
         .dropdown-content a {
             color: black;
@@ -93,7 +94,7 @@ body {
   margin-top: 100px;
   text-align: center;
   flex-direction: column;
-  font-family: "DeliusRegular"
+  font-family: "DeliusRegular";
 }
 #gedenkenachtermai {
   background-color: white;
