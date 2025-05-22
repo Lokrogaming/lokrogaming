@@ -1,10 +1,9 @@
 @font-face {
   font-family: "ArialRoundedMTBold";
   src: url("fonts/arial-rounded-mt-bold.ttf") format("truetype");
+  
   font-family: "OutfitSemiBold";
   src: url("fonts/Outfit-SemiBold.ttf") format("truetype");
-  font-family: "DeliusRegular";
-  src: url("fonts/Delius-Regular.ttf") format("truetype");
 }
 html {
         scroll-behavior: smooth;
