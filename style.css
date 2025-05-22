@@ -1,6 +1,8 @@
 @font-face {
   font-family: "ArialRoundedMTBold";
   src: url("fonts/arial-rounded-mt-bold.ttf") format("truetype");
+  font-family: "OutfitSemiBold";
+  src: url("fonts/Outfit-SemiBold.ttf") format("truetype");
 }
 html {
         scroll-behavior: smooth;
@@ -68,6 +70,7 @@ body {
   overflow: hidden;
   padding: 10px;
   z-index: 999;
+  font-family: "OutfitSemiBold"
 }
 
       .topnav a {
