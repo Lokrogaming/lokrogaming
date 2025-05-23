@@ -67,29 +67,40 @@
     document.getElementById("gedenkenachtermai").style.display = "block";
     document.getElementById("suggestion").style.display = "none";
   }
-      // Prüfen, ob Besuchszeit schon gespeichert ist
-  let firstVisit = localStorage.getItem('firstVisit');
-  if (!firstVisit) {
-    const now = new Date();
-    firstVisit = now.toISOString(); // ISO-Format für genaue Zeit
-    localStorage.setItem('firstVisit', firstVisit);
-  }
+      /// Prüfen, ob Besuchszeit schon gespeichert ist
+let firstVisit = localStorage.getItem('firstVisit');
+if (!firstVisit) {
+  const now = new Date();
+  firstVisit = now.toISOString();
+  localStorage.setItem('firstVisit', firstVisit);
+}
 
-  // Formatierte Anzeige im Toast
-  const date = new Date(firstVisit);
-  const formattedDate = date.toLocaleDateString('de-DE', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-  });
-  const formattedTime = date.toLocaleTimeString('de-DE');
+// Zeitdifferenz berechnen
+const firstDate = new Date(firstVisit);
+const now = new Date();
+const diffMs = now - firstDate;
 
-  // Toast aktualisieren
-  document.getElementById('toast-time').textContent = formattedTime;
-  document.getElementById('toast-body').textContent = `Willkommen zurück!`;
+function timeAgo(ms) {
+  const seconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
 
-  // Toast anzeigen
-  const toast = new bootstrap.Toast(document.getElementById('myToast'));
-  toast.show();
+  if (days > 0) return `vor ${days} Tag(en)`;
+  if (hours > 0) return `vor ${hours} Stunde(n)`;
+  if (minutes > 0) return `vor ${minutes} Minute(n)`;
+  return `gerade eben`;
+}
 
+const agoText = timeAgo(diffMs);
+
+// Toast aktualisieren
+document.getElementById('toast-time').textContent = agoText;
+document.getElementById('toast-body').textContent = `Willkommen zurück! Du warst zuletzt ${agoText} hier.`;
+
+// Toast anzeigen
+const toast = new bootstrap.Toast(document.getElementById('myToast'));
+toast.show();
 
     </script>
   </body>
