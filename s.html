@@ -16,5 +16,17 @@
 </svg>
     <h3>Couldn't find your searchrequest!</h3>
 </div>
+    <p id="txt"></p>
+    <script>
+      window.onload {
+      const params = new URLSearchParams(window.location.search);
+      const request = params.get("request")
+
+      const search = btoa(request)
+      const searchinput JSON.Parse(search)
+
+      getElementById("txt").innerHTML = searchinput;
+      }
+    </script>
   </body>
 </html>
