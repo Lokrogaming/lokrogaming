@@ -41,7 +41,7 @@
       <button class="button" onclick="window.location.href='https://lokrogaming.github.io/rassismus/'">Hier klicken um weiterzulesen</button>
     </div>
     
-
+<p id="error"></p>
 
 
 <div class="toast-container">
@@ -108,7 +108,7 @@ function search() {
  let searchinput = getElementById("searchinput").value ;
   let request = JSON.Stringify(searchinput);
   let searchrequest = atob(request);
-  
+  getElementById("error").innerHTML = "ok";
 
   const searchlink = "https://lokrogaming.github.io/s.html?request=" + ${searchrequest};
   window.location.href= ${searchlink};
