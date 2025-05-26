@@ -18,14 +18,15 @@
 </div>
     <p id="txt"></p>
     <script>
-      window.onload {
+      window.onload = onload()
+      function onload() {
       const params = new URLSearchParams(window.location.search);
       const request = params.get("request")
 
       const search = btoa(request)
       const searchinput JSON.Parse(search)
 
-      getElementById("txt").innerHTML = searchinput;
+      document.getElementById("txt").innerHTML = searchinput;
       }
     </script>
   </body>
