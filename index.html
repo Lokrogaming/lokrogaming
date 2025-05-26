@@ -103,12 +103,12 @@ document.getElementById('toast-body').textContent = `Willkommen zurück!`;
 // Toast anzeigen
 const toast = new bootstrap.Toast(document.getElementById('myToast'));
 toast.show();
-
+document.getElementById("submit").addEventListener("click", search)
 function search() {
- let searchinput = getElementById("searchinput").value ;
+ let searchinput = document.getElementById("searchinput").value ;
   let request = JSON.Stringify(searchinput);
   let searchrequest = atob(request);
-  getElementById("error").innerHTML = "ok";
+  document.getElementById("error").innerHTML = "ok";
 
   const searchlink = "https://lokrogaming.github.io/s.html?request=" + ${searchrequest};
   window.location.href= ${searchlink};
