@@ -44,19 +44,21 @@
 <p id="error"></p>
 
 
-<div class="toast-container">
-  <div id="myToast" class="toast" >
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
-      <img src="logo.png" alt="Logo" style="width:20px;">
-      <strong class="autor">Lokrogamer</strong>
+      <img src="logo.png" class="rounded me-2" alt="Bootstrap" style="width:20px;">
+      <strong class="me-auto">Lokrogamer</strong>
       <small id="toast-time">Gerade eben</small>
-      <button type="button" class="close">&times</button>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Schließen">&times</button>
     </div>
     <div class="toast-body" id="toast-body">
-      Willkommen auf meiner kleinen Seite!
+      Hallo! Diese Seite wurde gerade geöffnet.
     </div>
   </div>
 </div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
