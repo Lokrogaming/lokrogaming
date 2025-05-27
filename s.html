@@ -27,7 +27,7 @@
     <h1>Couldn't find your search request!</h1>
   </div>
 
-  <p id="txt">Looks like nothing is there...</p>
+  <p width="100px" id="txt">Looks like nothing is there...</p>
 
   <script>
     const suchDaten = {
@@ -50,7 +50,7 @@
           if (antwort.startsWith("http")) {
             document.getElementById("txt").innerHTML = `Gefunden: <a href="${antwort}" target="_blank">${antwort}</a>`;
           } else {
-            document.getElementById("txt").innerText = `Antwort: ${antwort}`;
+            document.getElementById("txt").innerText = `${antwort}`;
           }
         } else {
           document.getElementById("txt").innerText = `Search: ${searchrequest}`;
