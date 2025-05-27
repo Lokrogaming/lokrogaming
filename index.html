@@ -8,8 +8,7 @@
     <title>Main Menu</title>
     
   </head>
-  <body>
-    
+  <body class="bg-dark text-white">
       <div class="topnav">
         <a class="active" href="index">Home</a>
         <a href="game-library.html">Games</a>
@@ -107,7 +106,6 @@ const toast = new bootstrap.Toast(document.getElementById('myToast'));
 toast.show();
 function search() {
   let searchinput = document.getElementById("searchinput").value;
-  document.getElementById("error").innerHTML = "ok";
 
   const searchlink = `https://lokrogaming.github.io/s.html?request=${encodeURIComponent(searchinput)}`;
   window.location.href = searchlink;
