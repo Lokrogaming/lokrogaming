@@ -106,28 +106,13 @@ document.getElementById('toast-body').textContent = `Willkommen zurück!`;
 const toast = new bootstrap.Toast(document.getElementById('myToast'));
 toast.show();
 function search() {
- let searchinput = document.getElementById("searchinput").value ;
-  let request = JSON.Stringify(searchinput);
-  let searchrequest = atob(request);
+  let searchinput = document.getElementById("searchinput").value;
   document.getElementById("error").innerHTML = "ok";
 
-  const searchlink = "https://lokrogaming.github.io/s.html?request=" + ${searchrequest};
-  window.location.href= ${searchlink};
+  const searchlink = `https://lokrogaming.github.io/s.html?request=${encodeURIComponent(searchinput)}`;
+  window.location.href = searchlink;
 }
-  var input = document.getElementById("searchinput");
 
-// Execute a function when the user presses a key on the keyboard
-input.addEventListener("keypress", search(event) {
-  // If the user presses the "Enter" key on the keyboard
-  if (event.key === "Enter") {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("submitbtn").click();
-  }
-});
-
-      
     </script>
   </body>
 </html>
