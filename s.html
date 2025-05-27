@@ -18,16 +18,16 @@
 </div>
     <p id="txt"></p>
     <script>
-      window.onload = onload()
-      function onload() {
-      const params = new URLSearchParams(window.location.search);
-      const request = params.get("request")
+      <script>
+  window.onload = function () {
+    const params = new URLSearchParams(window.location.search);
+    const request = params.get("request");
 
-      const search = btoa(request)
-      const searchinput JSON.Parse(search)
+ 
+    document.getElementById("txt").innerText = decodeURIComponent(request);
+  };
+</script>
 
-      document.getElementById("txt").innerHTML = searchinput;
-      }
     </script>
   </body>
 </html>
