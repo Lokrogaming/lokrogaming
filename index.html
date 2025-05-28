@@ -43,19 +43,20 @@
 <p id="error"></p>
 
 
-<div class="toast-container">
-  <div id="myToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <img src="logo.png" class="rounded me-2" alt="Logo" style="width:20px;">
-      <strong class="autor">Lokrogamer</strong>
-      <small id="toast-time">Gerade eben</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Schließen"></button>
+<<div class="custom-toast-container">
+  <div id="customToast" class="custom-toast">
+    <div class="custom-toast-header">
+      <img src="logo.png" alt="Logo" class="custom-toast-icon">
+      <strong class="custom-toast-author">Lokrogamer</strong>
+      <small id="custom-toast-time">Gerade eben</small>
+      <span class="custom-toast-close" onclick="closeToast()">×</span>
     </div>
-    <div class="toast-body" id="toast-body">
-      Hallo! Diese Seite wurde gerade geöffnet.
+    <div class="custom-toast-body" id="custom-toast-body">
+      Hallo! 
     </div>
   </div>
 </div>
+
 
 
 
@@ -101,9 +102,21 @@ const agoText = timeAgo(diffMs);
 document.getElementById('toast-time').textContent = agoText;
 document.getElementById('toast-body').textContent = `Willkommen zurück!`;
 
-// Toast anzeigen
-const toast = new bootstrap.Toast(document.getElementById('myToast'));
-toast.show();
+      function showToast() {
+  document.getElementById('custom-toast-time').textContent = agoText;
+  document.getElementById('custom-toast-body').textContent = 'Willkommen zurück!';
+  document.getElementById('customToast').style.display = 'block';
+  setTimeout(() => closeToast(), 5000); // Automatisch nach 5 Sek. schließen
+}
+
+function closeToast() {
+  document.getElementById('customToast').style.display = 'none';
+}
+
+showToast();
+
+
+
 function search() {
   let searchinput = document.getElementById("searchinput").value;
 
