@@ -243,4 +243,57 @@ address {
   bottom: 10px;
   right: 10px;
 }
+.custom-toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+}
+
+.custom-toast {
+  background-color: #333;
+  color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  width: 300px;
+  animation: fadeIn 0.5s ease-in-out;
+  font-family: Arial, sans-serif;
+}
+
+.custom-toast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid #444;
+}
+
+.custom-toast-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+}
+
+.custom-toast-author {
+  flex-grow: 1;
+  margin-left: 0.5rem;
+  font-weight: bold;
+}
+
+.custom-toast-close {
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding-left: 0.5rem;
+}
+
+.custom-toast-body {
+  padding: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 
