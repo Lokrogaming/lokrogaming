@@ -10,6 +10,13 @@
       color: red;
       text-align: center;
     }
+    #results {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .result-item {
+      margin: 10px 0;
+    }
   </style>
 </head>
 <body>
@@ -27,7 +34,8 @@
     <h1>Couldn't find your search request!</h1>
   </div>
 
-  <p width="100px" id="txt">Looks like nothing is there...</p>
+  <p id="txt" style="text-align:center;">Looks like nothing is there...</p>
+  <div id="results"></div>
 
   <script>
     const suchDaten = {
@@ -38,22 +46,39 @@
       "black0815xx": "https://lokrogaming.github.io/black0815xx"
     };
 
+    function treffQuote(query, key) {
+      let match = 0;
+      const minLen = Math.min(query.length, key.length);
+      for (let i = 0; i < minLen; i++) {
+        if (query[i] === key[i]) match++;
+      }
+      return Math.round((match / key.length) * 100);
+    }
+
     window.onload = function () {
       const params = new URLSearchParams(window.location.search);
       const request = params.get("request");
 
       if (request) {
         const searchrequest = decodeURIComponent(request).toLowerCase();
-        const antwort = suchDaten[searchrequest];
+        document.getElementById("txt").innerText = `Suchbegriff: ${searchrequest}`;
+        
+        const resultContainer = document.getElementById("results");
+        resultContainer.innerHTML = "";
+        let foundAny = false;
 
-        if (antwort) {
-          if (antwort.startsWith("http")) {
-            document.getElementById("txt").innerHTML = `Gefunden: <a href="${antwort}" target="_blank">${antwort}</a>`;
-          } else {
-            document.getElementById("txt").innerText = `${antwort}`;
+        Object.entries(suchDaten).forEach(([key, value]) => {
+          if (key.includes(searchrequest)) {
+            foundAny = true;
+            const quote = treffQuote(searchrequest, key);
+            const item = document.createElement("div");
+            item.className = "result-item";
+            item.innerHTML = `🔎 <strong>${key}</strong> (${quote}% Trefferquote): <a href="${value}" target="_blank">${value}</a>`;
+            resultContainer.appendChild(item);
           }
-        } else {
-          document.getElementById("txt").innerText = `Search: ${searchrequest}`;
+        });
+
+        if (!foundAny) {
           document.getElementById("error").style.display = "block";
         }
       } else {
