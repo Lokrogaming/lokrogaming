@@ -118,14 +118,22 @@ function closeToast() {
 
 showToast();
 
+const ValidationCodes = [
+    "1342", "2057", "3869", "4790", "5182",
+    "6203", "7318", "8420", "9531", "0647",
+    "1783", "2940", "3501", "4672", "5893",
+    "6019", "7205", "8436", "9104", "3285"
+  ];
 
+  function search() {
+    const searchinput = document.getElementById("searchinput").value;
+    const randomCode = ValidationCodes[Math.floor(Math.random() * ValidationCodes.length)];
 
-function search() {
-  let searchinput = document.getElementById("searchinput").value;
+    sessionStorage.setItem("validationCode", randomCode);
 
-  const searchlink = `https://lokrogaming.github.io/s.html?request=${encodeURIComponent(searchinput)}`;
-  window.location.href = searchlink;
-}
+    const searchlink = `https://lokrogaming.github.io/s.html?request=${encodeURIComponent(searchinput)}`;
+    window.location.href = searchlink;
+  }
 
     </script>
   </body>
