@@ -102,8 +102,9 @@ function timeAgo(ms) {
 const agoText = timeAgo(diffMs);
 
 // Toast aktualisieren
-document.getElementById('toast-time').textContent = agoText;
-document.getElementById('toast-body').textContent = `Willkommen zurück!`;
+document.getElementById('custom-toast-time').textContent = agoText;
+document.getElementById('custom-toast-body').textContent = `Willkommen zurück!`;
+
 
       function showToast() {
   document.getElementById('custom-toast-time').textContent = agoText;
