@@ -85,9 +85,13 @@
       } else {
         document.getElementById("txt").innerText = "No search request provided.";
         document.getElementById("error").style.display = "block";
-       
+        setTimeout(back, 3000);
+        
       }
     };
+    function back() {
+      history.back;
+    }
   </script>
 </body>
 </html>
