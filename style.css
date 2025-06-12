@@ -8,7 +8,7 @@ html {
         scroll-behavior: smooth;
 }
 body {
-        background: lightblue;
+        background: gray;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -29,6 +29,8 @@ body {
   padding: 10px;
   z-index: 999;
   font-style: normal;
+  border-color: black;
+  border-size: 2px;
 }
 
       .topnav a {
