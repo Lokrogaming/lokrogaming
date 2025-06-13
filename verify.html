@@ -51,6 +51,7 @@
       if (input === actual) {
         sessionStorage.setItem('verified', 'true');
         document.getElementById('status').textContent = '✅ Verifiziert!';
+        window.location.href="index.html";
       } else {
         document.getElementById('status').textContent = '❌ Falsches Captcha. Neues generiert.';
         sessionStorage.setItem('verified', 'false');
