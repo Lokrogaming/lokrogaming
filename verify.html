@@ -64,6 +64,7 @@
       generateCaptcha();
       if (sessionStorage.getItem('verified') === 'true') {
         document.getElementById('status').textContent = '✅ Bereits verifiziert (sessionStorage)';
+        window.location.href="index.html";
       }
     }
   </script>
