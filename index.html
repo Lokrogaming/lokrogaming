@@ -158,8 +158,13 @@ const ValidationCodes = [
   "928374561093", "294837561026", "473920184753", "384920175629", "918273645028",
   "203948756137", "473920184757", "829374610289"
 ];
+      function getverifycode(name) {
+        const vc = new URLSearchParam(window.location.search);
+        return vc.get(name);
+      }
       function checkverificationcode() {
-      if (acceptedverifycodes.include(verficationcode)) {
+        const givenverifycode = getverifycode('vc');
+      if (acceptedverifycodes.include(givenverifycode)) {
         
         sessionStorage.setItem('verified', 'true');
       } else {
@@ -167,8 +172,8 @@ const ValidationCodes = [
       }
       window.onload = () => {
       if (sessionStorage.getItem('verified') !== 'true') {
-        alert('⚠️ Zugriff nur nach Verifikation möglich.');
-        window.location.href = 'https://xmvep0.mimo.run';
+        
+        window.location.href = 'https://xmvep0.mimo.run/index.html';
       }
         checkverificationcode();
     };
