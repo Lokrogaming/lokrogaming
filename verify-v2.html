@@ -58,45 +58,42 @@
   "203948756137", "473920184757", "829374610289"
 ];
 
-    function generateverifycode {
-      const pick = Math.floor(Math.random() * 101);
+
+  function generateCaptcha() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let captcha = '';
+    for (let i = 0; i < 6; i++) {
+      captcha += chars[Math.floor(Math.random() * chars.length)];
+    }
+    document.getElementById('captcha').textContent = captcha;
+  }
+
+  function verifyCaptcha() {
+    const input = document.getElementById('captchaInput').value.trim().toUpperCase();
+    const actual = document.getElementById('captcha').textContent;
+
+    if (input === actual) {
+      const pick = Math.floor(Math.random() * verifycodes.length);
       const verifycode = verifycodes[pick];
-      
-    
-
-    function generateCaptcha() {
-      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-      let captcha = '';
-      for (let i = 0; i < 6; i++) {
-        captcha += chars[Math.floor(Math.random() * chars.length)];
-      }
-      document.getElementById('captcha').textContent = captcha;
-    }
-
-    function verifyCaptcha() {
-      const input = document.getElementById('captchaInput').value.trim().toUpperCase();
-      const actual = document.getElementById('captcha').textContent;
-
-      if (input === actual) {
-        sessionStorage.setItem('verified', 'true');
-        document.getElementById('status').textContent = '✅ Verifiziert! code: ${verifycode}';
-        //window.location.href="index.html?vc=${verifycode}";
-      } else {
-        document.getElementById('status').textContent = '❌ Falsches Captcha. Neues generiert.';
-        sessionStorage.setItem('verified', 'false');
-        generateCaptcha();
-      }
-    }
-
-    // Initial
-    window.onload = () => {
+      sessionStorage.setItem('verified', 'true');
+      document.getElementById('status').textContent = `✅ Verifiziert! code: ${verifycode}`;
+      // window.location.href = `index.html?vc=${verifycode}`;
+    } else {
+      document.getElementById('status').textContent = '❌ Falsches Captcha. Neues generiert.';
+      sessionStorage.setItem('verified', 'false');
       generateCaptcha();
-      if (sessionStorage.getItem('verified') === 'true') {
-        document.getElementById('status').textContent = '✅ Bereits verifiziert (sessionStorage)';
-        window.location.href="index.html";
-      }
     }
-  </script>
+  }
+
+  // Initial
+  window.onload = () => {
+    generateCaptcha();
+    if (sessionStorage.getItem('verified') === 'true') {
+      document.getElementById('status').textContent = '✅ Bereits verifiziert (sessionStorage)';
+      window.location.href = "index.html";
+    }
+  };
+</script>
 
 </body>
 </html>
