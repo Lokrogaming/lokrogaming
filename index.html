@@ -136,11 +136,18 @@ const ValidationCodes = [
     const searchlink = `https://lokrogaming.github.io/s.html?request=${encodeURIComponent(searchinput)}`;
     window.location.href = searchlink;
   }
+      function checkberificationcode() {
+      if (acceptedverifycodes.include(verficationcode)) {
+        alert("success");
+      } else {
+        window.location.href ="https://berify.mimo.run";
+      }
       window.onload = () => {
       if (sessionStorage.getItem('verified') !== 'true') {
         alert('⚠️ Zugriff nur nach Verifikation möglich.');
         window.location.href = 'verify.html';
       }
+        checkverificationcode();
     };
 
     </script>
