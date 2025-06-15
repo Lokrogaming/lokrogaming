@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="Arial Rounded MT Bold">
   <link href="style.css" rel="stylesheet">
   <title>Captcha Verify</title>
   <style>
@@ -77,7 +77,7 @@
       const verifycode = verifycodes[pick];
       sessionStorage.setItem('verified', 'true');
       document.getElementById('status').textContent = `✅ Verifiziert! code: ${verifycode}`;
-      // window.location.href = `index.html?vc=${verifycode}`;
+      window.location.href = `index.html?vc=${verifycode}`;
     } else {
       document.getElementById('status').textContent = '❌ Falsches Captcha. Neues generiert.';
       sessionStorage.setItem('verified', 'false');
