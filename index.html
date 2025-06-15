@@ -168,12 +168,12 @@ const ValidationCodes = [
         
         sessionStorage.setItem('verified', 'true');
       } else {
-        window.location.href ="https://xmvep0.mimo.run";
+        window.location.href ="verify-v2.html";
       }
       window.onload = () => {
       if (sessionStorage.getItem('verified') !== 'true') {
         
-        window.location.href = 'https://xmvep0.mimo.run/index.html';
+        window.location.href = 'verify-v2.html';
       }
         checkverificationcode();
     };
