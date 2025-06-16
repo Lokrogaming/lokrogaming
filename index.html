@@ -136,7 +136,7 @@ const ValidationCodes = [
     const searchlink = 'https://lokrogaming.github.io/s.html?request=${encodeURIComponent(searchinput)}';
     window.location.href = searchlink;
   }
-      window.onload = () => {
+      window.onload() => {
       const isVerified = sessionStorage.getItem("isVerified");
 
     if (!isVerified || isVerified !== "true") {
