@@ -137,10 +137,11 @@ const ValidationCodes = [
     window.location.href = searchlink;
   }
       window.onload = () => {
-      if (sessionStorage.getItem('verified') !== 'true') {
-        alert('⚠️ Zugriff nur nach Verifikation möglich.');
-        window.location.href = 'verify.html';
-      }
+      const isVerified = sessionStorage.getItem("isVerified");
+
+    if (!isVerified || isVerified !== "true") {
+      window.location.href = "verify.html";
+    }
     };
 
     </script>
