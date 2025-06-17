@@ -94,17 +94,17 @@ function timeAgo(ms) {
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
 
-  if (days > 0) return vor ${days} Tag(en);
-  if (hours > 0) return vor ${hours} Stunde(n);
-  if (minutes > 0) return vor ${minutes} Minute(n);
-  return gerade eben;
+  if (days > 0) return "vor ${days} Tag(en)";
+  if (hours > 0) return "vor ${hours} Stunde(n)";
+  if (minutes > 0) return "vor ${minutes} Minute(n)";
+  return "gerade eben";
 }
 
 const agoText = timeAgo(diffMs);
 
 // Toast aktualisieren
-document.getElementById('custom-toast-time').textContent = agoText;
-document.getElementById('custom-toast-body').textContent = Willkommen zurück!;
+document.getElementById('custom-toast-time').textContent = "agoText";
+document.getElementById('custom-toast-body').textContent = "Willkommen zurück!";
 
 
       function showToast() {
@@ -136,11 +136,11 @@ const ValidationCodes = [
     const searchlink = 'https://lokrogaming.github.io/s.html?request=${encodeURIComponent(searchinput)}';
     window.location.href = searchlink;
   }
-      window.onload = () => {
+      window.onload = {
       const isVerified = sessionStorage.getItem("isVerified");
 
     if (!isVerified) {
-      window.location.href = "verify.html";
+      window.location.href = "verify.html?origin=index.html";
     }
     };
 
