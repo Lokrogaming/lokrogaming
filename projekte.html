@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <title>Projects</title>
+    <style>
+      #projekte {
+        display: none;
+      }
+        
+    </style>
   </head>
   <body>
     
@@ -22,5 +28,16 @@
     <button class="projektbtn" onclick="window.location.href='/reufnr'">ReuFnR (auch ein guter Freund)</button>
     <button class="projektbtn" onclick="window.location.href='projects/latein/verben-gruppen-projekt/downloader.html'">Latein Grammatik</button>
   </div>
+    <div id="verifications">
+      <input id="codeinput" type="number" placeholder="Code..." class="input">
+      <button class="option pill" onclick="window.open('https://dcserver.link/lokrogamer', '_blank')">Über den Discord Server verifizieren</button>
+      <button class="option pill" onclick="window.open('verify.html', '_blank')">Über das Captcha verifizieren</button>
+    </div>
+    <script>
+      window.onload() => {
+      alert("You need to be verificated before entering this page!");
+      
+      }
+    </script>
   </body>
 </html>
