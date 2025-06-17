@@ -61,10 +61,12 @@
 
     // Initial
     window.onload = () => {
+      const params = new URLSearchParams(window.location.search);
+      const origin = params.get("origin");
       generateCaptcha();
       if (sessionStorage.getItem('verified') === 'true') {
         document.getElementById('status').textContent = '✅ Bereits verifiziert (sessionStorage)';
-        window.location.href="index.html";
+        window.location.href= origin;
       }
     }
   </script>
