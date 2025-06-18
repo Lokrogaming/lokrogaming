@@ -51,9 +51,12 @@
       if (input === actual) {
         sessionStorage.setItem('verified', 'true');
         document.getElementById('status').textContent = '✅ Verifiziert!';
-        window.location.href="index.html";
+        const verified = "true";
+        const redirection = origin + "?verified=" + verified;
+        window.location.href=redirection
       } else {
         document.getElementById('status').textContent = '❌ Falsches Captcha. Neues generiert.';
+        const verified = "false";
         sessionStorage.setItem('verified', 'false');
         generateCaptcha();
       }
@@ -63,10 +66,11 @@
     window.onload = () => {
       const params = new URLSearchParams(window.location.search);
       const origin = params.get("origin");
+      const redirection = origin + "?verified=" + verified;
       generateCaptcha();
       if (sessionStorage.getItem('verified') === 'true') {
         document.getElementById('status').textContent = '✅ Bereits verifiziert (sessionStorage)';
-        window.location.href= origin;
+        window.location.href= redirection;
       }
     }
   </script>
