@@ -327,6 +327,8 @@ address {
   cursor: pointer;
   border-radius: 16px;
   box-sizing: border-box;
+  font-family: "Arial Rounded MT Bold";
+  
 }
 
 
