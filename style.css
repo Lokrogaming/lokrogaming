@@ -316,5 +316,18 @@ partners {
   max-width: 600px;
   margin-top: 100px;
 }
+partners button.partnerbtn {
+  width: 100%;
+  background-color: lightgray;
+  border: none;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
 
 
