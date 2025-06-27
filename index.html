@@ -22,7 +22,7 @@
         <button type="button" id="submitbtn" onclick="search()" class="button submit">Go!</button>
         <a class="about" href="about.html">About</a>
       </div>
-    </div>
+    <canvas id="snow"></canvas>
     <div style="display: none;" class="gtranslate_wrapper"></div>
 <script>window.gtranslateSettings = {"default_language":"de","detect_browser_language":true,"languages":["de","fr","it","es","tr","en","la"],"wrapper_selector":".gtranslate_wrapper","switcher_horizontal_position":"right","switcher_vertical_position":"top","switcher_text_color":"#f7f7f7","switcher_arrow_color":"#f2f2f2","switcher_border_color":"#161616","switcher_background_color":"#303030","switcher_background_shadow_color":"#474747","switcher_background_hover_color":"#3a3a3a","dropdown_text_color":"#eaeaea","dropdown_hover_color":"#748393","dropdown_background_color":"#474747"}</script>
 <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
@@ -79,6 +79,9 @@
     document.getElementById("gedenkenachtermai").style.display = "block";
     document.getElementById("suggestion").style.display = "none";
   }
+    if (monat === 12 ) {
+      document.getElementById("fire").style.display = "block";
+    }
       /// Prüfen, ob Besuchszeit schon gespeichert ist
 let firstVisit = localStorage.getItem('firstVisit');
 if (!firstVisit) {
@@ -147,6 +150,73 @@ const ValidationCodes = [
       window.location.href = "verify.html?origin=index.html";
     }
     };
+             
+            
+        // Snow Animation 
+        const canvas = document.getElementById('snow');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = particles.map(() => new Particle());
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.radius = Math.random() * 3 + 1;
+                this.speed = Math.random() * 2 + 1;
+                this.wind = Math.random() * 1.5 - 0.75;
+                this.color = this.getRandomFlakeColor();
+            }
+
+            getRandomFlakeColor() {
+                const colors = ["#FFFFFF", "#D2D0D0", "#989595"];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update() {
+                this.y += this.speed;
+                this.x += this.wind;
+                if (this.y > height) this.reset();
+                if (this.x > width || this.x < 0) this.reset();
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        function createParticles(count) {
+            particles = Array.from({ length: count }, () => new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        createParticles(150);
+        animate();
 
     </script>
   </body>
