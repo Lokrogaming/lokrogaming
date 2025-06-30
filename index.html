@@ -74,7 +74,7 @@
   const heute = new Date();
   const tag = heute.getDate();
   const monat = heute.getMonth(); // 0 = Januar, 4 = Mai
-
+ window.onload {
   if (monat === 4 && (tag === 7 || tag === 8 || tag === 9)) {
     document.getElementById("gedenkenachtermai").style.display = "block";
     document.getElementById("suggestion").style.display = "none";
@@ -94,7 +94,7 @@ if (!firstVisit) {
 const firstDate = new Date(firstVisit);
 const now = new Date();
 const diffMs = now - firstDate;
-
+ }
 function timeAgo(ms) {
   const seconds = Math.floor(ms / 1000);
   const minutes = Math.floor(seconds / 60);
@@ -112,7 +112,7 @@ const agoText = timeAgo(diffMs);
 // Toast aktualisieren
 document.getElementById('custom-toast-time').textContent = "agoText";
 document.getElementById('custom-toast-body').textContent = "Willkommen zurück!";
-
+ 
 
       function showToast() {
   document.getElementById('custom-toast-time').textContent = agoText;
